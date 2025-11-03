@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Lab11_Thread extends Thread {
-    private static ArrayList<String> data = new ArrayList<String>();
+    private ArrayList<String> data = new ArrayList<String>();
     private String name;
     private int runs; 
 
@@ -13,11 +13,11 @@ public class Lab11_Thread extends Thread {
     public void run() {
       for(int i = 0; i < runs; i++){
         try{
-          Thread.sleep(50);
+          Thread.sleep(45);
         } catch (Exception e){
             e.printStackTrace();
         }
-        this.addItem( name + " " + i);
+        this.addItem(name + " " + i);
       }
     }
 

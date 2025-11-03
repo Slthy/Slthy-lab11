@@ -24,14 +24,14 @@ B have both contributed 100 entries respectively
 
         try {
             threadA.join();
-            threadB.join();  // Fixed: was threadA.join() again
+            threadB.join();
             
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt(); // interrupted
         }
         countA = threadA.getData().size();
         countB = threadB.getData().size();
-        assertEquals(true, countA==100 && countB==100);  // Fixed: should be 100, not 99
+        assertEquals(true, countA==100 && countB==100);
     }
 
     /*
@@ -54,10 +54,12 @@ ArrayList has at least 10 entries after 500ms of system time
             Thread.sleep(500);
             countA = threadA.getData().size();
             countB = threadB.getData().size();
+            
+            threadA.join();
+            threadB.join();
         } catch (Exception e){
             e.printStackTrace();
         }
-
         assertEquals(true, countA>=10 && countB>=10);
 
     }
@@ -91,6 +93,8 @@ finishes adding its 10 entries before thread B was allowed to
         } catch (Exception e){
             e.printStackTrace();
         }
+
+        countA = threadA.getData().size();
         countB = threadB.getData().size();
         assertEquals(true, countA==10 && countB==10);
     }
